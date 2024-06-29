@@ -1,0 +1,241 @@
+<div class="reg-form">
+    <h2 class="regit-head text-center">Registration Form</h2>
+    <div class="user-registration-form">
+        <form [formGroup]="userRegistrationForm" (ngSubmit)="submitUserRegistratrionForm()">
+
+            <h3 style="padding: 10px 0px;font-weight: bold;">Personal Details</h3>
+
+            <div class="form-field">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="firstName" class="form-label">First Name<span class="mandatory-sign">*</span>
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <input id="firstName" type="text" class="form-control" formControlName="firstName">
+                    </div>
+                    <div *ngIf="!userRegistrationForm.get('firstName')?.valid && userRegistrationForm.get('firstName')?.touched"
+                        class="error-text">
+                        <span *ngIf="userRegistrationForm.get('firstName')?.hasError('required')">First Name is
+                            required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="lastName" class="form-label">Last Name </label>
+                    </div>
+                    <div class="col-6">
+                        <input id="lastName" type="text" class="form-control" formControlName="lastName">
+                    </div>
+                    <!-- <div *ngIf="!userRegistrationForm.get('lastName')?.valid && userRegistrationForm.get('lastName')?.touched" class="error-text">
+                        <span *ngIf="userRegistrationForm.get('lastName')?.hasError('required')">First Name is required</span>
+                    </div>                     -->
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="dob" class="form-label">Date of Birth<span class="mandatory-sign">*</span>
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <input id="dob" type="date" class="form-control" formControlName="dob">
+                    </div>
+                    <div *ngIf="!userRegistrationForm.get('dob')?.valid && userRegistrationForm.get('dob')?.touched"
+                        class="error-text">
+                        <span *ngIf="userRegistrationForm.get('dob')?.hasError('required')">First Name is
+                            required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="gender" class="form-label">Gender<span class="mandatory-sign">*</span> </label>
+                    </div>
+                    <div class="col-6">
+                        <select class="form-select" aria-label="Default select example" formControlName="gender">
+                            <option selected disabled>Select Gender</option>
+                            <option *ngFor="let gender of genderDataSource" [value]="gender.genderId">
+                                {{gender.genderName}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="!userRegistrationForm.get('gender')?.valid && userRegistrationForm.get('gender')?.touched"
+                        class="error-text">
+                        <span *ngIf="userRegistrationForm.get('gender')?.hasError('required')">Gender is required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="email" class="form-label">Email<span class="mandatory-sign">*</span> </label>
+                    </div>
+                    <div class="col-6">
+                        <input id="email" type="text" class="form-control" formControlName="email">
+                    </div>
+                    <div *ngIf="!userRegistrationForm.get('email')?.valid && userRegistrationForm.get('email')?.touched"
+                        class="error-text">
+                        <span *ngIf="userRegistrationForm.get('email')?.hasError('required')">Email is required</span>
+                        <span *ngIf="userRegistrationForm.get('email')?.hasError('email')">Invalid Email Address</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="contactNumber" class="form-label">Contact Number<span
+                                class="mandatory-sign">*</span> </label>
+                    </div>
+                    <div class="col-6">
+                        <input id="contactNumber" type="text" class="form-control" formControlName="contactNumber">
+                    </div>
+                    <div *ngIf="!userRegistrationForm.get('contactNumber')?.valid && userRegistrationForm.get('contactNumber')?.touched"
+                        class="error-text">
+                        <span *ngIf="userRegistrationForm.get('contactNumber')?.hasError('required')">Contact Number is
+                            required</span>
+                        <span
+                            *ngIf="userRegistrationForm.get('contactNumber')?.hasError('maxlength') || userRegistrationForm.get('contactNumber')?.hasError('minlength') || userRegistrationForm.get('contactNumber')?.hasError('numeric')">Invalid
+                            Contact Number</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="padding: 10px 0px;font-weight: bold;">Address</h3>
+
+            <div formGroupName="address">
+
+                <div class="form-field">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="street" class="form-label">Street<span class="mandatory-sign">*</span> </label>
+                        </div>
+                        <div class="col-6">
+                            <input id="street" type="text" class="form-control" formControlName="street">
+                        </div>
+                        <div *ngIf="!userRegistrationForm.get('address')?.get('street')?.valid && userRegistrationForm.get('address')?.get('street')?.touched"
+                            class="error-text">
+                            <span
+                                *ngIf="userRegistrationForm.get('address')?.get('street')?.hasError('required')">Street
+                                Name is required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="district" class="form-label">District<span class="mandatory-sign">*</span>
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <input id="district" type="text" class="form-control" formControlName="district">
+                        </div>
+                        <div *ngIf="!userRegistrationForm.get('address')?.get('district')?.valid && userRegistrationForm.get('address')?.get('district')?.touched"
+                            class="error-text">
+                            <span
+                                *ngIf="userRegistrationForm.get('address')?.get('district')?.hasError('required')">District
+                                Name is required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="state" class="form-label">State<span class="mandatory-sign">*</span> </label>
+                        </div>
+                        <div class="col-6">
+                            <input id="state" type="text" class="form-control" formControlName="state">
+                        </div>
+                        <div *ngIf="!userRegistrationForm.get('address')?.get('state')?.valid && userRegistrationForm.get('address')?.get('state')?.touched"
+                            class="error-text">
+                            <span *ngIf="userRegistrationForm.get('address')?.get('state')?.hasError('required')">State
+                                Name is required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="country" class="form-label">Country<span class="mandatory-sign">*</span>
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <input id="country" type="text" class="form-control" formControlName="country">
+                        </div>
+                        <div *ngIf="!userRegistrationForm.get('address')?.get('country')?.valid && userRegistrationForm.get('address')?.get('country')?.touched"
+                            class="error-text">
+                            <span
+                                *ngIf="userRegistrationForm.get('address')?.get('country')?.hasError('required')">Country
+                                Name is required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="pincode" class="form-label">Pincode<span class="mandatory-sign">*</span>
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <input id="pincode" type="text" class="form-control" formControlName="pincode">
+                        </div>
+                        <div *ngIf="!userRegistrationForm.get('address')?.get('pincode')?.valid && userRegistrationForm.get('address')?.get('pincode')?.touched"
+                            class="error-text">
+                            <span
+                                *ngIf="userRegistrationForm.get('address')?.get('pincode')?.hasError('required')">Pincode
+                                is required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="padding: 10px 0px;font-weight: bold;">Skills</h3>
+
+            <div formArrayName="skills">
+                <ng-container *ngFor="let skill of skills.controls; let i = index">
+                    <div class="form-field">
+                        <div class="row">
+                            <div class="col-6">
+                                <label [for]="i" class="form-label">Skill {{i+1}}<span class="mandatory-sign">*</span>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <input [id]="i" type="text" class="form-control" [formControlName]="i">
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="material-symbols-outlined skill-add-del-btn" (click)="addSkill()">
+                                            add_circle
+                                        </span>
+                                        <span class="material-symbols-outlined skill-add-del-btn mx-1"
+                                            (click)="removeSkill(i)">
+                                            do_not_disturb_on
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div style="text-align: right;">
+                <button type="submit" class="btn btn-primary bob">Register</button>
+            </div>
+
+            <!-- <p>{{userRegistrationForm.value | json}}</p> -->
+        </form>
+    </div>
+</div>
