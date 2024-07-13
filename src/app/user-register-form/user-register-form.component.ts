@@ -62,6 +62,11 @@ export class UserRegisterFormComponent {
 
   sampleMethod()
   {
+
+  }
+
+  sample2MethodForBrancCheck()
+  {
     
   }
 }
