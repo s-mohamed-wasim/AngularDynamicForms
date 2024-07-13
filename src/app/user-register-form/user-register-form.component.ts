@@ -59,4 +59,9 @@ export class UserRegisterFormComponent {
   {
     console.log(this.userRegistrationForm.value);
   }
+
+  sampleMethod()
+  {
+    
+  }
 }
