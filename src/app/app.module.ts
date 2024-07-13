@@ -8,13 +8,15 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { AdminFormComponent } from './admin-form/admin-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormPracticeComponent } from './form-practice/form-practice.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegisterFormComponent,
     UserLoginFormComponent,
-    AdminFormComponent
+    AdminFormComponent,
+    FormPracticeComponent
   ],
   imports: [
     BrowserModule,

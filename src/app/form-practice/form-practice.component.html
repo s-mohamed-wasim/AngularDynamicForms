@@ -1,0 +1,48 @@
+<p>form-practice works!</p>
+<button type="button" (click)="addPerson()">Add Person</button>
+<div>
+    <p>{{peopleForm.value | json}}</p>
+    <form [formGroup]="peopleForm" (ngSubmit)="savePeople()">
+        <div formArrayName="people">
+            <ng-container *ngFor="let person of getPeople().controls;let i = index">
+                <div [formGroupName]="i" class="mt-3 person-input-box">
+
+                    <div>
+                        <label>Name: </label><span class="err-sign">*</span>
+                        <input type="text" formControlName="name" autocomplete="off">
+                        <div *ngIf="checkForNameFieldError(i)">
+                            <span class="err-msg">Name is Required</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Email: </label><span class="err-sign">*</span>
+                        <input type="text" formControlName="email" autocomplete="off">
+                        <div *ngIf="checkForEmailFieldError(i)">
+                            <span class="err-msg" *ngIf="checkForEmailFieldMandatoryError(i)">Email Address is Required</span>
+                            <span class="err-msg" *ngIf="checkForEmailFieldFormatError(i)">Invalid Email Address</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Gender: </label>
+                        <input type="text" formControlName="gender" autocomplete="off">
+                    </div>
+
+                    <div formArrayName="hobbies">
+                        <ng-container *ngFor="let hobby of getHobbies(i).controls; let j = index">
+                            <div>
+                                <label>{{'hobby ' + (j+1)}} </label>
+                                <input type="text" [formControlName]="j"><button *ngIf="getHobbies(i).length < 4" type="button" (click)="addHobby(i)" class="mx-3">Add Hobby</button> <button *ngIf="getHobbies(i).length > 1" type="button" (click)="removeHobby(i,j)">Remove Hobby</button>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <button type="button" (click)="reomvePerson(i)">Remove Person</button>
+                </div>
+            </ng-container>
+        </div>
+
+        <button type="submit" class="mt-3 btn btn-primary" [disabled]="peopleForm.invalid">Save</button>
+    </form>
+</div>
