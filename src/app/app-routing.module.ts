@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:'register',component:UserRegisterFormComponent},
   {path:'login',component:UserLoginFormComponent},
   {path:'admin',component:AdminFormComponent},
-  {path:'practice',component:FormPracticeComponent},
+  {path:'form-practice',component:FormPracticeComponent},
 ];
 
 @NgModule({
